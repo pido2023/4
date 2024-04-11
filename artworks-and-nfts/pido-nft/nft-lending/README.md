@@ -1,0 +1,5 @@
+# NFT Lending
+
+Leveraging the pricing mechanism of the Harberger tax system, Pido is able to address the complex issue of asset pricing more precisely. When an asset is assigned a reasonable market value, it opens the door to introducing lending services for NFTs. This service allows users to take out loans using their NFTs as collateral without losing ownership. Meanwhile, the PIT submitted by the users as a guarantee is pooled into a dedicated NFT lending pool.
+
+This pool not only provides the necessary liquidity for NFT lending but also generates additional income for the users who pledge. When other users borrow from this pool, the interest they pay becomes the pool's earnings, which are distributed to all pledging users in proportion to their stakes. Such a model not only increases the liquidity of NFTs but also incentivizes more users to participate in pledging, creating a self-growing and self-sustaining ecosystem. This innovative financial model greatly enhances the utility and appeal of NFTs by transforming static assets into tools capable of generating passive income.

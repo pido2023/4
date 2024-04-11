@@ -1,0 +1,101 @@
+# Pidothon
+
+Pidothon is a competition platform within Pido, crafted to provide an interactive showcase and selection stage for designers, artists, and buyers. On this system, designers and artists upload their original creations, while users — acting as buyers — possess the power to select and support the works they love. This process not only empowers users to determine the winning creations but also adds layers and depth to the interactions among participants.
+
+Within Pidothon, each piece is comprehensively assessed and ranked based on the Pido Index, user vote counts, and other related metrics. These indicators together form an extensive evaluation system aimed at fairly reflecting the popularity and market acceptance of the works. When a user's voting choices align closely with the final rankings of the works, these insightful buyers will have the opportunity to receive special airdrop rewards — a recognition of their excellent judgment and an incentive for community members to participate more actively in future selection events.
+
+The rewards for winners in Pidothon go beyond honor, they include tangible benefits such as fiat currency prizes, opportunities to increase exposure, and potential for collaboration with the platform. For designers/artists, it represents a prime opportunity to showcase their talent, expand their influence, and explore commercial collaborations. For user buyers, it is a stage to impact market trends with their taste and choices, while also gaining tangible returns by participating in voting activities.
+
+## **PVP Voting Mechanism**
+
+### **Voting Process**
+
+* Users in PVP mode vote for their preferred design/artwork, with the option to skip.
+* Voting will consume 1 PIC token, accumulating in the PIC pool for that round.
+
+### **ELO Scoring Mechanism**
+
+* Initial Scoring: Each design/artwork starts with a score of 1200 points.
+* The ELO scoring system is used for score calculations, where:
+  * The score of design/artwork A is $$R_A$$ and the score of design/artwork B is $$R_B$$.
+  * Winning and losing scores are denoted by $$S_A$$ and $$S_B$$
+    * 1 point for a win
+    * 0 points for a loss
+    * 0.5 points for an abstention
+* Expected win rate calculation:
+  * Win rate for design/artwork A: $$E_A=\frac{1}{1+10^{\frac{R_B-R_A}{400}}}$$
+  * Win rate for design/artwork B: $$E_B=\frac{1}{1+10^{\frac{R_A-R_B}{400}}}$$
+
+### Score update
+
+* Updated score for design/artwork A: $$R_A'=R_A+K(S_A-E_A)$$
+* Updated score for design/artwork B: $$R_B'=R_B+K(S_B-E_B)$$
+* The initial $$K$$ value is set to 32 to adjust score sensitivity.
+
+### **Scores and Rankings**
+
+Scores are used to determine the rankings of the designs/artworks, with higher-ranked designs/works receiving more visibility or other rewards.
+
+## **Unified Voting Rules**
+
+### **Participation Conditions for Designs/Works**
+
+Designers/Artists can select limited edition designs/artworks to participate, with a starting price of $$P$$.
+
+### **Voting Costs**
+
+* The PIC cost of voting is the same as the cost for display rights, calculated by $$Z=k_{9}I_AP^{r_{10}}$$.
+* $$k_{9}$$ and $$r_{10}$$ are constants, $$I_A$$ is the design/artwork's Pido index.
+* Initial settings: $$k_9=0.02$$, $$I_A=50$$, $$P=1$$, starting voting cost is 1 PIC.
+
+### **Quadratic Voting Mechanism**
+
+* A quadratic voting mechanism is adopted, where the cost of the $$n$$th vote is $$Zn$$ PIC tokens.
+* Daily voting cost calculation
+
+$$
+\sum _j\sum_i^{n_j}Z_ji
+$$
+
+* $$Z_ji$$ is the cost of the $$i$$th vote, independent calculation for different designs/artworks.
+* If all votes are cast for the same design/artwork, the total cost is $$\frac{1}{2}Zn(n+1)$$.
+* Daily voting counts are reset, all PICs accumulate in the competition PIC pool.
+
+## **Token Dynamics**
+
+### **Token Acquisition**
+
+* Users obtain PIC through daily tasks, with a first-time login bonus of 500 PIC.
+* In the initial phase, a daily login reward of 100 PIC is given.
+
+### **PIC Pool**
+
+* Users' consumed PIC is recorded as $$x_i$$.
+* The total amount in the PIC pool is defined by $$X=(\sum \sqrt{x_i})^2$$, supplemented by the system if insufficient.
+
+### **Airdrop Mechanism**
+
+* The total PIT for each airdrop round is $$A=\min\{\mu X,Y\}$$.
+* $$\mu$$ is the PIC to PIT exchange rate, $$Y$$ is the airdrop reward cap.
+
+### **Airdrop Distribution**
+
+* PVP voting participants will receive half of the PIT airdrop.
+  * Total number of PVP votes by the user $$N_i$$.
+  * Amount of PIT received: $$\frac{1}{2}A(\frac{N_i}{\sum N_i})^{r_{15}}$$.
+  * $$r_{15}$$ is a tuning constant.
+*   Unified voting participants will receive the other half of the PIT airdrop.
+
+    * The number of votes cast by each user for a certain design/artwork is denoted as $$M_i​$$, hence the total number of votes cast by the user is $$M=\sum M_i​$$.
+    * The total number of votes received by each design/artwork is $$O_i​$$, thus the total number of votes generated by the event is $$O=\sum O_i​$$.
+    * The proportion of PIT received by voters
+
+    $$
+    \frac{1}{2}A\sum_i\frac{M_j\big(\frac{O_i}{O}\big)^{r_{16}}}{\sum _j M_j\big(\frac{O_i}{O}\big)^{r_{16}}}
+    $$
+
+    * $$r_{16}$$ is a tuning constant.
+
+## **Fiat Currency Reward Mechanism**
+
+The winner will receive a fiat currency reward determined by Pido.
